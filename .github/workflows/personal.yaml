@@ -28,6 +28,8 @@ jobs:
     steps:
     - name: Check out repository code
       uses: actions/checkout@v4
+    - name: pwd
+      run: pwd
     - name: ls path
       run: ls
     - name: Upload artifacts
