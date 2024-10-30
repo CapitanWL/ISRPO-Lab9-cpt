@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Build project
-        run: dotnet build
+        run: dotnet build src/ISRPO-Lab9-demo.sln
   dotnet-test:
     needs: dotnet_build
     runs-on: ubuntu-latest
