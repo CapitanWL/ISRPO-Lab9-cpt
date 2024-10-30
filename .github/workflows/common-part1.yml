@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Build project
-        run: dotnet build src/ISRPO-Lab9-demo.sln
+        run: dotnet build src/MatrixClassLibrary/MatrixClassLibrary.csproj
   dotnet-test:
     needs: dotnet_build
     runs-on: ubuntu-latest
