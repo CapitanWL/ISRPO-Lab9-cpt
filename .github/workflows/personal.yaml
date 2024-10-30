@@ -21,22 +21,13 @@ jobs:
       - name: Publish
         run: dotnet publish --configuration ${{ matrix.configuration }} --output ./${{ matrix.configuration }}
         working-directory: src/
-  load-artef:
-    needs: dotnet-build
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        configuration: [Debug, Release]
-    steps:
-    - name: Check out repository code
-      uses: actions/checkout@v4
-    - name: ls files 1
-      run: ls -R ./src/
-    - name: ls files 1
-      run: ls -R ./src/${{ matrix.configuration }}/
-    - name: Upload artifacts
-      uses: actions/upload-artifact@v4
-      with:
+      - name: ls files 1
+        run: ls -R ./src/
+      - name: ls files 1
+        run: ls -R ./src/${{ matrix.configuration }}/
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
           name: out-${{ matrix.configuration }}
           path: ./src/${{ matrix.configuration }}/
       
