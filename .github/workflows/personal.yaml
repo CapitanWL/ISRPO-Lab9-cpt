@@ -32,6 +32,6 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
           name: Build ${{ matrix.configuration }} artifact
-          path: src/${{ matrix.names }}/bin/${{ matrix.configuration }}/net8.0/.
+          path: src/${{ matrix.names }}/bin/${{ matrix.configuration }}/net8.0/${{ matrix.names }}.dll
       
     
