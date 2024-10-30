@@ -21,11 +21,19 @@ jobs:
       - name: Build project
         run: dotnet build
         working-directory: src/
-  dotnet-test:
+  dotnet-test-in-debug:
     needs: dotnet_build
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
-      - name: Project testing
-        run: dotnet test src/XUnitTestsForMatrix/XUnitTestsForMatrix.csproj
+      - name: Project testing in debug
+        run: dotnet test src/XUnitTestsForMatrix/XUnitTestsForMatrix.csproj --configuration Debug
+  dotnet-test-in-release:
+    needs: dotnet_build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - name: Project testing in release
+        run: dotnet test src/XUnitTestsForMatrix/XUnitTestsForMatrix.csproj --configuration Release
