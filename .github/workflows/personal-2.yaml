@@ -1,8 +1,9 @@
 name: GH actions on commit in main
 run-name: ${{ github.actor }} is testing out GitHub Actions
-on:
-  push:
-    branches: ["master"]
+on: [workflow_dispatch]
+# on:
+  # push:
+  #   branches: ["master"]
 jobs:
   report_generate:
     runs-on: ubuntu-latest
