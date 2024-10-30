@@ -28,4 +28,4 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v4
       - name: Project testing
-        run: dotnet test
+        run: dotnet test src/XUnitTestsForMatrix/XUnitTestsForMatrix.csproj
