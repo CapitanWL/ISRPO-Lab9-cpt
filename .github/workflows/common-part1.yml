@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Build project
-        run: dotnet build src/
+        run: dotnet build
   dotnet-test:
     needs: dotnet_build
     runs-on: ubuntu-latest
