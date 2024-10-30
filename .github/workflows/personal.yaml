@@ -28,16 +28,10 @@ jobs:
       matrix:
         configuration: [Debug, Release]
     steps:
-    - name: check
-      run: pwd
-    - name: ls
-      run: ls
-    - name: ls ..
-      run: ls ./src/
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
       with:
           name: out-${{ matrix.configuration }}
-          path: ./src/${{ matrix.configuration }}/
+          path: ./src/${{ matrix.configuration }}/*
       
     
