@@ -1,6 +1,6 @@
 name: GH actions on workflow_dispatch
 run-name: ${{ github.actor }} is testing out GitHub Actions
-on: [pull_request]
+on: [workflow_dispatch]
 jobs:
   dotnet-build:
     runs-on: ubuntu-latest
