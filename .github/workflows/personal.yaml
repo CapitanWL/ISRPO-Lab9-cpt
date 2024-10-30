@@ -20,6 +20,7 @@ jobs:
         working-directory: src/
       - name: Publish
         run: dotnet publish --configuration ${{ matrix.configuration }} --output ./${{ matrix.configuration }}
+        working-directory: src/
   load-artef:
     needs: dotnet-build
     runs-on: ubuntu-latest
@@ -31,6 +32,6 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
           name: out-${{ matrix.configuration }}
-          path: ./${{ matrix.configuration }}
+          path: src/${{ matrix.configuration }}
       
     
