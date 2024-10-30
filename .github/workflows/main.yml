@@ -1,8 +1,48 @@
+# name: GH actions on workflow_dispatch
+# run-name: ${{ github.actor }} is testing out GitHub Actions
+# on: [workflow_dispatch]
+# jobs:
+#   dotnet_setup:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Check out repository code
+#         uses: actions/checkout@v4
+#       - run: echo "The ${{ github.repository }} repository has been cloned to the runner."
+#       - name: .NET setup :(
+#         uses: actions/setup-dotnet@v4
+#         with:
+#           dotnet-version: 8.0.x
+#   dotnet_build:
+#     needs: dotnet_setup
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Check out repository code
+#         uses: actions/checkout@v4
+#       - name: Build project
+#         run: dotnet build
+#         working-directory: src/
+#   dotnet-test-in-debug:
+#     needs: dotnet_build
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Check out repository code
+#         uses: actions/checkout@v4
+#       - name: Project testing in debug
+#         run: dotnet test src/XUnitTestsForMatrix/XUnitTestsForMatrix.csproj --configuration Debug
+#   dotnet-test-in-release:
+#     needs: dotnet_build
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: Check out repository code
+#         uses: actions/checkout@v4
+#       - name: Project testing in release
+#         run: dotnet test src/XUnitTestsForMatrix/XUnitTestsForMatrix.csproj --configuration Release
+
 name: GH actions on workflow_dispatch
 run-name: ${{ github.actor }} is testing out GitHub Actions
 on: [workflow_dispatch]
 jobs:
-  dotnet_setup:
+  dotnet_build:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
@@ -12,28 +52,30 @@ jobs:
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 8.0.x
-  dotnet_build:
-    needs: dotnet_setup
-    runs-on: ubuntu-latest
-    steps:
-      - name: Check out repository code
-        uses: actions/checkout@v4
       - name: Build project
         run: dotnet build
         working-directory: src/
-  dotnet-test-in-debug:
+  dotnet-test:
     needs: dotnet_build
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        configuration: [Debug, Release]
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
+      - name: .NET setup :(
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
       - name: Project testing in debug
-        run: dotnet test src/XUnitTestsForMatrix/XUnitTestsForMatrix.csproj --configuration Debug
-  dotnet-test-in-release:
+        run: dotnet test src/XUnitTestsForMatrix/XUnitTestsForMatrix.csproj --configuration ${{ matrix.configuration }}
+  dotnet-analyze:
     needs: dotnet_build
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
-      - name: Project testing in release
-        run: dotnet test src/XUnitTestsForMatrix/XUnitTestsForMatrix.csproj --configuration Release
+      - name: Code analyze
+        run: dotnet tool install -g dotnet-format && dotnet format src/
+
