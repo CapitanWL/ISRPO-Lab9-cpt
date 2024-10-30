@@ -28,10 +28,12 @@ jobs:
     steps:
     - name: Check out repository code
       uses: actions/checkout@v4
+    - name: ls dirs
+      run: ls ISRPO-Lab9-cpt/src/${{ matrix.names }}/bin/${{ matrix.configuration }}/net8.0/
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
       with:
           name: Build ${{ matrix.configuration }} artifact
-          path: src/${{ matrix.names }}/bin/${{ matrix.configuration }}/net8.0/${{ matrix.names }}.dll
+          path: ISRPO-Lab9-cpt/src/${{ matrix.names }}/bin/${{ matrix.configuration }}/net8.0/${{ matrix.names }}.dll
       
     
