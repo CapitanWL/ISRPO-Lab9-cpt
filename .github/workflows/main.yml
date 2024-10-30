@@ -19,7 +19,7 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v4
       - name: Build project
-      - run: dotnet build
+        run: dotnet build
         working-directory: src/
   dotnet-test:
     needs: dotnet_build
