@@ -19,6 +19,7 @@ jobs:
         run: dotnet build --configuration ${{ matrix.configuration }}
         working-directory: src/
   load-artef:
+    needs: dotnet-build
     runs-on: ubuntu-latest
     strategy:
       matrix:
