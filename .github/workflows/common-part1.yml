@@ -17,7 +17,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Build project
-        run: dotnet build src/MatrixClassLibrary/MatrixClassLibrary.csproj
+        run: dotnet build
+        working-directory: src/
   dotnet-test:
     needs: dotnet_build
     runs-on: ubuntu-latest
