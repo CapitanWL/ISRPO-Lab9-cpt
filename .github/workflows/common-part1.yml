@@ -11,6 +11,7 @@ jobs:
       - name: .NET setup :(
         uses: actions/setup-dotnet@v4
   dotnet_build:
+    needs: dotnet_setup
     runs-on: ubuntu-latest
     steps:
       - name: Build project
