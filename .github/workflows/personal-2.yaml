@@ -32,6 +32,9 @@ jobs:
         run: reportgenerator -reports:"coverage.cobertura.xml" -targetdir:"coveragereport" -reporttypes:Html
         working-directory: src/XUnitTestsForMatrix
 
+      - name: Uploact
+        run: pwd
+
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
