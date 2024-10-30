@@ -39,4 +39,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: report
-          path: ./src/XUnitTestsForMatrix/codecoveragereport/
+          path: ./codecoveragereport/
+          working-directory: src/XUnitTestsForMatrix
