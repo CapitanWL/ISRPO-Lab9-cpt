@@ -31,7 +31,7 @@ jobs:
     - name: pwd
       run: pwd
     - name: ls path
-      run: ls ISRPO-Lab9-cpt/src/${{ matrix.names }}/.
+      run: src/${{ matrix.names }}
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
       with:
