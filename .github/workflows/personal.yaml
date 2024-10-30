@@ -1,4 +1,4 @@
-name: GH actions on workflow_dispatch
+name: GH actions on pull_request
 run-name: ${{ github.actor }} is testing out GitHub Actions
 on: [workflow_dispatch]
 jobs:
