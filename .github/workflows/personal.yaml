@@ -1,0 +1,27 @@
+name: GH actions on workflow_dispatch
+run-name: ${{ github.actor }} is testing out GitHub Actions
+on: [pull_request]
+jobs:
+  dotnet-build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        configuration: [Debug, Release]
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      - run: echo "The ${{ github.repository }} repository has been cloned to the runner."
+      - name: .NET setup :(
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+      - name: Build project
+        run: dotnet build --configuration ${{ matrix.configuration }}
+        working-directory: src/
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: Build ${{ matrix.configuration }} artifact
+          path: /bin/${{ matrix.configuration }}/net8.0/
+      
+    
