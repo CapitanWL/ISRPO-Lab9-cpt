@@ -33,7 +33,7 @@ jobs:
         working-directory: src/XUnitTestsForMatrix
 
       - name: Uploact
-        run: pwd
+        run: ls
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
